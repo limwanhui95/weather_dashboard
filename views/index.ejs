@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <title>Weather</title>
+</head>
+<body>
+    <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+        <div class="card " style="width: 100%; max-width: 1080px;">
+            <div class="row g-0">
+                <div class="col-md-2 col-sm-3">
+                  <img src= <%= weatherImgSrc %> class="img-my-fit rounded-start" alt="...">
+                </div>  
+                <div class="col-md-2 col-sm-3">
+                    <div class="card-body">
+                        <h1><%= weatherData.current.temp_c %>°C</h1>
+                        <p class="card-text mb-1"><%= weatherData.current.condition.text %></p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">  
+                    <div class="card-body">
+                        <p class="card-text mb-1 fw-light">Wind: <%= weatherData.current.wind_kph %>km/h  </p>
+                        <p class="card-text mb-1 fw-light">Humidity: <%= weatherData.current.humidity %>%  </p>
+                        <p class="card-text mb-1 fw-light">UV index: <%= weatherData.current.uv %>  </p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                  <div class="card-body text-end"> 
+                    <!-- location date and weather description here -->
+                    <h5 class="card-title mb-1"><%= geoData.regionName %>, <%= geoData.countryName %></h5>
+                    <p class="card-text mb-1"><%= weatherData.location.localtime %></p>     
+                    <p class="card-text mb-1"><small class="text-body-secondary">
+                        <% let d1 = new Date(weatherData.location.localtime); %>
+                        <% let d2 = new Date(weatherData.current.last_updated); %>
+                        Last updated <%=(d1.getHours() - d2.getHours())*60 + d1.getMinutes() - d2.getMinutes()%>mins ago.
+                    </small></p>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
+
