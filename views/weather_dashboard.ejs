@@ -1,0 +1,36 @@
+<div class="row g-0">
+    <div class="col-md-2 col-sm-3">
+      <img src= <%= weatherImgSrc %> class="img-my-fit rounded-start" alt="...">
+    </div>  
+    <div class="col-md-2 col-sm-3">
+        <div class="card-body">
+            <h1><%= weatherData.current.temp_c %>°C</h1>
+            <p class="card-text mb-1"><%= weatherData.current.condition.text %></p>
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-6">  
+        <div class="row g-0">
+            <div class="card-body col-6 pe-0">
+                <p class="card-text mb-1 fw-light">Wind: <%= weatherData.current.wind_kph %>km/h  </p>
+                <p class="card-text mb-1 fw-light">Humidity: <%= weatherData.current.humidity %>%  </p>
+                <p class="card-text mb-1 fw-light">UV index: <%= weatherData.current.uv %>  </p>    
+            </div>
+            <div class="card-body col-6 ps-0">
+                <p class="card-text mb-1 fw-light">PM2.5: <%= weatherData.current.air_quality.pm_2_5 %>μg/m3  </p>
+                <p class="card-text mb-1 fw-light">PM10: <%= weatherData.current.air_quality.pm_10 %>μg/m3  </p>
+            </div>
+        </div>   
+    </div>
+    <div class="col-md-4 col-sm-12">
+      <div class="card-body text-end"> 
+        <!-- location date and weather description here -->
+        <h5 class="card-title mb-1"><%= geoData.regionName %>, <%= geoData.countryName %></h5>
+        <p class="card-text mb-1"><%= weatherData.location.localtime %></p>     
+        <p class="card-text mb-1"><small class="text-body-secondary">
+            <% let d1 = new Date(weatherData.location.localtime); %>
+            <% let d2 = new Date(weatherData.current.last_updated); %>
+            Last updated <%=(d1.getHours() - d2.getHours())*60 + d1.getMinutes() - d2.getMinutes()%>mins ago.
+        </small></p>
+      </div>
+    </div>
+</div>

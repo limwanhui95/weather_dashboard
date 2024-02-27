@@ -1,0 +1,56 @@
+<script>
+    var forecastDataString = '<%-JSON.stringify(weatherData.forecast.forecastday)%>'
+    var forecastData = JSON.parse(forecastDataString);
+    var chartXData =[];
+    var chartYdata = [];
+    try{
+        for(let i=0;i<24;i++) {
+            chartXData.push(forecastData[0].hour[i].temp_c);
+            chartYdata.push(getHour(i));
+        }
+        const chartData = {
+            labels: chartYdata,
+            datasets: [{
+                data: chartXData,
+                backgroundColor: '#FFE4C4',
+                fill: {
+                    target: 'origin',
+                    above: '#F5F5DC',
+                }
+            }]
+        };
+        new Chart(
+        document.getElementById('forecast'),
+        {
+          type: 'line',
+          data: chartData,
+          options: {
+            plugins: {
+               legend: false,
+            },
+            scales: {
+                x: {
+                    grid: {
+                        display: false
+                    }
+                }    
+            },
+          }
+        }
+        );
+        console.log(chartData);
+    } catch (error) {
+        console.log(error);
+    }
+    function getHour(str){
+        if(str<12) {
+            return str+" am";
+        }
+        else if(str==12) {
+            return str+" pm";
+        }
+        else {
+            return (str-12)+" pm";
+        }
+    }
+</script>
