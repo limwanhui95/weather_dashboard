@@ -8,8 +8,8 @@ const weatherURL = "http://api.weatherapi.com/v1";
 
 const app = express();
 const port = 3000;
-const weather_apiKey = "365759bb0ea8432b88690535242602";
-const appip_apiKey = "aa71965c-89fa-4b15-a950-26c156764bbe";
+const weather_apiKey = process.env.appip_apiKey.weather_apiKey;
+const appip_apiKey = process.env.appip_apiKey;
 const appip = Appip(appip_apiKey);
 
 app.use(express.static('public'));
@@ -24,7 +24,6 @@ app.get("/",async(req,res)=>{
     try{
         geoResult = await appip.getLocation();
         weatherResult = await axios.get(weatherURL+`/forecast.json?key=${weather_apiKey}&q=${geoResult.latitude}, ${geoResult.longitude}&aqi=yes&days=1`);
-        console.log(weatherResult.data);
         res.render("index.ejs", { 
             geoData: geoResult,
             weatherData: weatherResult.data,
@@ -38,7 +37,7 @@ app.get("/",async(req,res)=>{
 
 
 app.listen(port,()=>{
-    console.log(`Server running on port: ${port}`);
+    //console.log(`Server running on port: ${port}`);
 });
 
 function getImgPath(data) {
