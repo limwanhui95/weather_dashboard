@@ -22,7 +22,7 @@ var weatherResult;
 // render homepage
 app.get("/",async(req,res)=>{
     try{
-        geoResult = await appip.getLocation();
+        geoResult = await appip.getLocation({ip: req.ip});
         weatherResult = await axios.get(weatherURL+`/forecast.json?key=${weather_apiKey}&q=${geoResult.latitude}, ${geoResult.longitude}&aqi=yes&days=1`);
         res.render("index.ejs", { 
             geoData: geoResult,

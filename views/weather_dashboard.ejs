@@ -24,7 +24,9 @@
     <div class="col-md-4 col-sm-12">
       <div class="card-body text-md-end"> 
         <!-- location date and weather description here -->
-        <h5 class="card-title mb-1"><%= geoData.regionName %>, <%= geoData.countryName %></h5>
+        <h5 class="card-title mb-1"><%= geoData.regionName %> <% if (geoData.regionName) { %>
+            ,
+        <% } %>  <%= geoData.countryName %></h5>
         <p class="card-text mb-1"><%= weatherData.location.localtime %></p>     
         <p class="card-text mb-1"><small class="text-body-secondary">
             <% let d1 = new Date(weatherData.location.localtime); %>
