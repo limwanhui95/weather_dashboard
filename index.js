@@ -10,8 +10,7 @@ const app = express();
 const port = 3000;
 // const weather_apiKey = process.env.appip_apiKey.weather_apiKey;
 //const appip_apiKey = process.env.appip_apiKey;
-const weather_apiKey = "365759bb0ea8432b88690535242602";
-const appip_apiKey = "aa71965c-89fa-4b15-a950-26c156764bbe";
+
 const appip = Appip(appip_apiKey);
 
 app.use(express.static('public'));
