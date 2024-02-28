@@ -8,11 +8,10 @@ const weatherURL = "http://api.weatherapi.com/v1";
 
 const app = express();
 const port = 3000;
-// const weather_apiKey = process.env.weather_apiKey;
-// const appip_apiKey = process.env.appip_apiKey;
+const weather_apiKey = process.env.weather_apiKey;
+const appip_apiKey = process.env.appip_apiKey;
 
-const weather_apiKey = "365759bb0ea8432b88690535242602";
-const appip_apiKey = "aa71965c-89fa-4b15-a950-26c156764bbe";
+
 
 const appip = Appip(appip_apiKey);
 
@@ -28,8 +27,7 @@ var weatherResult;
 app.get("/",async(req,res)=>{
     try{
         console.log(req.ip);
-        // geoResult = await appip.getLocation({ip: req.ip});
-        geoResult = await appip.getLocation();
+        geoResult = await appip.getLocation({ip: req.ip});
         weatherResult = await axios.get(weatherURL+`/forecast.json?key=${weather_apiKey}&q=${geoResult.latitude}, ${geoResult.longitude}&aqi=yes&days=1`);
         res.render("index.ejs", { 
             geoData: geoResult,
