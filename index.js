@@ -14,6 +14,7 @@ const appip = Appip(appip_apiKey);
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended:true}));
+app.set('trust proxy',true);
 
 // global variable
 var geoResult;
@@ -22,6 +23,7 @@ var weatherResult;
 // render homepage
 app.get("/",async(req,res)=>{
     try{
+        console.log(req.ip);
         geoResult = await appip.getLocation({ip: req.ip});
         weatherResult = await axios.get(weatherURL+`/forecast.json?key=${weather_apiKey}&q=${geoResult.latitude}, ${geoResult.longitude}&aqi=yes&days=1`);
         res.render("index.ejs", { 
