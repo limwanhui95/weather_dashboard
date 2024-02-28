@@ -1,18 +1,17 @@
 <script>
     var forecastDataString = '<%-JSON.stringify(weatherData.forecast.forecastday)%>'
     var forecastData = JSON.parse(forecastDataString);
-    var chartXData =[];
-    var chartYdata = [];
+    var chartYData =[];
+    var chartXData = [];
     try{
         for(let i=0;i<24;i++) {
-            chartXData.push(forecastData[0].hour[i].temp_c);
-            chartYdata.push(getHour(i));
+            chartYData.push(forecastData[0].hour[i].<%- ylabel %>);
+            chartXData.push(getHour(i));
         }
         const chartData = {
-            labels: chartYdata,
+            labels: chartXData,
             datasets: [{
-                data: chartXData,
-                backgroundColor: '#FFE4C4',
+                data: chartYData,
                 borderColor: 'rgba(255, 228, 196,0.5)',
                 fill: {
                     target: 'origin',
@@ -20,22 +19,33 @@
                 }
             }]
         };
-        Chart.register(ChartDataLabels);
-        new Chart(
-        document.getElementById('forecast'),
-        {
-          type: 'line',
-          data: chartData,
-          options: {
+        const option = {
             plugins: {
                legend: false,
-               datalabels:{
+               datalabels: {
                 color: "black",
                 font: {
-                    weight: "bold",
+                    weight: "normal",
                 },
                 align: "end",
                 offset: 2,
+               },
+               tooltip: {
+                enabled: false,
+               },
+               title: {
+                display: true,
+                text: "<%- chartTitle %>",
+                padding: {
+                    top: 10,
+                    bottom: 10,
+                },
+                font: {
+                    size: 20,
+                    weight: "bold",
+                    
+                },
+                color: "black",
                },
             },
             scales: {
@@ -56,11 +66,23 @@
                         display: false,
                     },
                     ticks: {display: false},
-                    grace: '25%',
+                    grace: '30%',
                 }    
             },
-
-          }
+            elements: {
+                point: {
+                    pointRadius: "0",
+                },
+            },
+            events: [],
+        };
+        Chart.register(ChartDataLabels);
+        new Chart(
+        document.getElementById('<%- chartID %>'),
+        {
+          type: 'line',
+          data: chartData,
+          options: option
         }
         );
         console.log(chartData);

@@ -9,41 +9,39 @@
 </head>
 <body>
     <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
-        <div class="card " style="width: 100%; max-width: 1080px;">
-            <%- include("weather_dashboard.ejs",{
-                geoData: geoData,
-                weatherData: weatherData,
-                weatherImgSrc: weatherImgSrc}) %>
-            <div class="row g-0 px-3 py-3"><canvas id="forecast" height="200px"></canvas></div>
-            <div class="row g-0 px-3 py-3">
-                <div id="carouselExample" class="carousel slide">
-                    <div class="carousel-inner">
-                      <div class="carousel-item active">
-                        <canvas height="200px"></canvas>
-                      </div>
-                      <div class="carousel-item">
-                        <canvas height="200px"></canvas>
-                      </div>
-                      <div class="carousel-item">
-                        <canvas height="200px"></canvas>
-                      </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
-                    </button>
-                  </div>
+        <div class="card card-border px-2 py-2" style="width: 100%; max-width: 1080px;">
+            <div class="card">
+                <%- include("weather_dashboard.ejs",{
+                    geoData: geoData,
+                    weatherData: weatherData,
+                    weatherImgSrc: weatherImgSrc}) %>
+                <div class="row g-0 px-3 py-3"><canvas id="temperature_forecast" height="200px"></canvas></div>
+                <div class="row g-0 px-3 py-3"><canvas id="uv_forecast" height="200px"></canvas></div>
+                <div class="row g-0 px-3 py-3"><canvas id="pm2.5_forecast" height="200px"></canvas></div>
             </div>
         </div>
     </div>
     <script src="/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
-    <%- include("weather_forecast.ejs",{weatherData: weatherData}) %>
+    <%- include("template_forecast.ejs",{ 
+        weatherData: weatherData,
+        ylabel: "temp_c",
+        chartID: "temperature_forecast", 
+        chartTitle: "Temperature forecast (°C)",
+    }) %>
+    <%- include("template_forecast.ejs",{ 
+        weatherData: weatherData,
+        ylabel: "uv",
+        chartID: "uv_forecast", 
+        chartTitle: "UV index forecast",
+    }) %>
+    <%- include("template_forecast.ejs",{ 
+        weatherData: weatherData,
+        ylabel: "air_quality.pm2_5",
+        chartID: "pm2.5_forecast", 
+        chartTitle: "PM2.5 forecast (μg/m3)",
+    }) %>
 </body>
 </html>
 
