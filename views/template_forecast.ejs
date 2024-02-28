@@ -32,7 +32,9 @@
                 display: function(context){
                     return context.dataIndex % 2;
                 },
-                formatter: Math.floor,
+                <% if(locals.formatter) { %>
+                    <- formatter ->
+                <% } %>
                },
                tooltip: {
                 enabled: false,
