@@ -8,14 +8,9 @@ const weatherURL = "http://api.weatherapi.com/v1";
 
 const app = express();
 const port = 3000;
-<<<<<<< HEAD
 const weather_apiKey = process.env.weather_apiKey;
 const appip_apiKey = process.env.appip_apiKey;
-=======
-// const weather_apiKey = process.env.appip_apiKey.weather_apiKey;
-//const appip_apiKey = process.env.appip_apiKey;
 
->>>>>>> 654ee832b61991ec2f0880d599e07a2b7c0891bf
 const appip = Appip(appip_apiKey);
 
 app.use(express.static('public'));
