@@ -29,6 +29,9 @@
                 },
                 align: "end",
                 offset: 2,
+                display: function(context){
+                    return context.dataIndex % 2;
+                },
                },
                tooltip: {
                 enabled: false,
