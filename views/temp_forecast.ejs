@@ -13,12 +13,14 @@
             datasets: [{
                 data: chartXData,
                 backgroundColor: '#FFE4C4',
+                borderColor: 'rgba(255, 228, 196,0.5)',
                 fill: {
                     target: 'origin',
                     above: '#F5F5DC',
                 }
             }]
         };
+        Chart.register(ChartDataLabels);
         new Chart(
         document.getElementById('forecast'),
         {
@@ -27,14 +29,37 @@
           options: {
             plugins: {
                legend: false,
+               datalabels:{
+                color: "black",
+                font: {
+                    weight: "bold",
+                },
+                align: "end",
+                offset: 2,
+               },
             },
             scales: {
                 x: {
+                    border:{
+                        display: false,
+                    },
                     grid: {
-                        display: false
-                    }
+                        display: false,
+                    },
+                    ticks: {color: "rgba(0,0,0,0.8)",}, 
+                },
+                y: {
+                    border:{
+                        display: false,
+                    },
+                    grid:{
+                        display: false,
+                    },
+                    ticks: {display: false},
+                    grace: '25%',
                 }    
             },
+
           }
         }
         );
