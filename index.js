@@ -7,7 +7,7 @@ import Chart from "chart.js/auto";
 const weatherURL = "http://api.weatherapi.com/v1";
 
 const app = express();
-const port = 3000;
+const port = 10000;
 const weather_apiKey = process.env.weather_apiKey;
 const appip_apiKey = process.env.appip_apiKey;
 
@@ -42,7 +42,7 @@ app.get("/",async(req,res)=>{
 
 
 app.listen(port,()=>{
-    //console.log(`Server running on port: ${port}`);
+    console.log(`Server running on port: ${port}`);
 });
 
 function getImgPath(data) {
