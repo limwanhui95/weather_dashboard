@@ -11,6 +11,7 @@ const port = 3000;
 const weather_apiKey = process.env.weather_apiKey;
 const appip_apiKey = process.env.appip_apiKey;
 
+
 const appip = Appip(appip_apiKey);
 
 app.use(express.static('public'));
@@ -40,7 +41,7 @@ app.get("/",async(req,res)=>{
 
 
 app.listen(port,()=>{
-    //console.log(`Server running on port: ${port}`);
+    console.log(`Server running on port: ${port}`);
 });
 
 function getImgPath(data) {

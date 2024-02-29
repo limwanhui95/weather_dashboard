@@ -15,9 +15,9 @@
                     geoData: geoData,
                     weatherData: weatherData,
                     weatherImgSrc: weatherImgSrc}) %>
-                <div class="row g-0 px-3 py-3"><canvas id="temperature_forecast" height="200px"></canvas></div>
-                <div class="row g-0 px-3 py-3"><canvas id="uv_forecast" height="200px"></canvas></div>
-                <div class="row g-0 px-3 py-3"><canvas id="pm2.5_forecast" height="200px"></canvas></div>
+                <div class="row g-0 px-2 py-3"><canvas id="temperature_forecast" height="200px"></canvas></div>
+                <div class="row g-0 px-2 py-3"><canvas id="uv_forecast" height="200px"></canvas></div>
+                <div class="row g-0 px-2 py-3"><canvas id="pm2.5_forecast" height="200px"></canvas></div>
             </div>
         </div>
     </div>
@@ -41,6 +41,7 @@
         ylabel: "air_quality.pm2_5",
         chartID: "pm2.5_forecast", 
         chartTitle: "PM2.5 forecast (μg/m3)",
+        formatter: "formatter: Math.floor",
     }) %>
 </body>
 </html>
