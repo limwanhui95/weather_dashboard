@@ -11,7 +11,6 @@ const port = 10000;
 const weather_apiKey = process.env.weather_apiKey;
 const appip_apiKey = process.env.appip_apiKey;
 
-
 const appip = Appip(appip_apiKey);
 
 app.use(express.static('public'));
